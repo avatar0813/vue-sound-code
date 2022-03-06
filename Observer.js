@@ -62,6 +62,7 @@ class Observer {
             configurable: true,
             get() {
                 //订阅数据变化时，往dep中添加观察者
+                // 每当new一个watcher的时候 就赋值Dep.target
                 Dep.target && dep.addSub(Dep.target);
                 return value;
             },
