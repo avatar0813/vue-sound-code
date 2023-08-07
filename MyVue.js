@@ -120,7 +120,7 @@ const compileUtil = {
     },
     setVal(expr, vm, inputVal) {
         expr.split('.').reduce((data, cur, index) => {
-            if (index === expr.split.length - 1) {
+            if (index === expr.split('.').length - 1) {
                 data[cur] = inputVal;
             }
             return data[cur]

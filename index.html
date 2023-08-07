@@ -13,7 +13,9 @@
         <div v-text="msg"></div>
         <div v-text="students.name"></div>
         <div v-html="msg"></div>
-        <input type="text" v-model="students.name">
+        <div><span>父亲：</span>{{students.family.father}}</div>
+        <label for="">父亲名：<input type="text" v-model="students.family.father"></label>
+        <label for="">学生名：<input type="text" v-model="students.name"></label>
         <p>{{students.name}}</p>
         <p>{{students.age}}</p>
         <p>{{students.class}}</p>
@@ -37,19 +39,23 @@
 <script>
     let vm = new MyVue({
         el: '#app',
-        data:{
-            url:'https://www.baidu.com/',
-            msg:'vue源码实现',
-            students:{
-                name:"tom",
-                age:12,
-                class:'c1'
+        data: {
+            url: 'https://www.baidu.com/',
+            msg: 'vue源码实现',
+            students: {
+                name: "tom",
+                age: 12,
+                class: 'c1',
+                family: {
+                    father: 'jack',
+                    mother: 'lily'
+                }
             }
         },
-        methods:{
-            show(){
-                console.log(this.$data);
-                this.students.name = '学习vue';
+        methods: {
+            show() {
+                console.log(this.$data)
+                this.students.name = '学习vue'
             }
         }
     })
