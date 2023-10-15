@@ -2,7 +2,7 @@ class Compile {
   constructor(el, vm) {
     this.el = this.isElementNode(el) ? el : document.querySelector(el)
     this.vm = vm
-    //1.获取文档碎片对象，放入内存中减少页面的回流和重绘
+    //1.获取文档片段对象，放入内存中减少页面的回流和重绘
     const flagment = this.node2Flagment(this.el)
     //2.编译模板
     this.compile(flagment)
@@ -11,6 +11,11 @@ class Compile {
     this.el.appendChild(flagment)
   }
 
+  /**
+   * 获取每一个子节点
+   * 判断节点类型(元素节点、文本节点，还是有子节点，有则递归编译)
+   * @param {*} flagment 文档片段
+   */
   compile(flagment) {
     //获取到每一个子节点
     const childNodes = flagment.childNodes;
@@ -30,6 +35,7 @@ class Compile {
   }
 
 
+  // 元素节点转为文档片段
   node2Flagment(el) {
     //创建文档碎片
     let f = document.createDocumentFragment()
@@ -44,6 +50,12 @@ class Compile {
     return el.nodeType === 1
   }
 
+  /**
+   * 获取元素上的所有属性，
+   * 判断属性类型，是指令还是事件亦或原始属性（不处理）
+   * 
+   * @param {*} node 文档片段节点
+   */
   compileElement(node) {
     const attributes = node.attributes;
     [...attributes].forEach(attr => {
